@@ -23,7 +23,7 @@ jobs:
       id-token: write
     strategy:
       fail-fast: false
-    steps: 
+    steps:
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v3
@@ -62,7 +62,7 @@ jobs:
           password: ${{ env.REGISTRY_PASSWORD }}
           extra-args: |
             --disable-content-trust
-            
+
       # Sign container
       - uses: sigstore/cosign-installer@main
 
