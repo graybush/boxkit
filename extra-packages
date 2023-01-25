@@ -1,7 +1,10 @@
 btop
 chezmoi
 cosign
+dbus-x11
+ffmpeg
 fzf
+github-cli
 helix
 just
 less
@@ -12,8 +15,10 @@ nmap-ncat
 opensc
 plocate
 python3
+ripgrep
 speedtest-cli
 starship
 tor
 vim
 vimdiff
+zstd
