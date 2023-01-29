@@ -4,8 +4,7 @@ A base image and action for Toolbx and Distrobox.
 Sure, you can use the distro you're used to, but what if ...
 
 This image is going to experiment with what a "born from cloud native" UNIX terminal experience would look like.
-It is designed to be used in conjuction with a [dotfile manager](https://dotfiles.github.io/utilities/) so that the entire image and config are managed in git.
-It's designed to be the companion userspace for cloud-native desktops.
+It is used in conjuction with a [dotfile manager](https://dotfiles.github.io/utilities/) and designed to be the companion terminal experience for cloud-native desktops.
 We're starting small but have big aspirations.
 
 - Starts with the latest Alpine image from the [Toolbx Community Images](https://github.com/toolbx-images/images)
@@ -16,7 +15,11 @@ We're starting small but have big aspirations.
   - `btop` for process management
   - `micro` and `helix` text editors
   - `python3`
-  - Common tools: `plocate`, `fzf`, `cosign`
+  - Some common power tools: `plocate`, `fzf`, `cosign`, `ripgrep`, `github-cli`, and `ffmpeg`
+  - CLI tools recommended by [rawkode](https://www.youtube.com/watch?v=TNlDSG1iDW8)
+    - [zellij](https://github.com/zellij-org/zellij) - terminal workspace
+    - [direnv](https://direnv.net/) - environment variable extension for your shell
+    - [atuin](https://github.com/ellie/atuin) - magical shell history
 - Host Management QoL
   - These are meant for occasional one off commands, not complex workflows
     - Auto symlink the flatpak, podman, and docker commands
@@ -41,9 +44,11 @@ If you use toolbx:
 
 Use `chezmoi` to pull down your dotfiles and set up git sync.
 
+
 ### Make your own
 
 Fork and add programs to this this image - over time you'll end up with the perfect CLI for you.
+Keeping it as a pet works, though the author recommends leaving all your config in git and routinely pulling a new image.
 
 The user experience is much nicer if you [set your terminal open right in the container]() and is the intended experience.
 

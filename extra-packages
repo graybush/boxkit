@@ -1,7 +1,9 @@
+atuin
 btop
 chezmoi
 cosign
 dbus-x11
+direnv
 ffmpeg
 fzf
 github-cli
@@ -10,6 +12,7 @@ just
 less
 micro
 ncdu
+ncurses
 neofetch
 nmap-ncat
 opensc
@@ -21,4 +24,5 @@ starship
 tor
 vim
 vimdiff
+zellij
 zstd
