@@ -10,11 +10,14 @@ github-cli
 helix
 just
 less
+make
 micro
 ncdu
 ncurses
 neofetch
+neovim
 nmap-ncat
+npm
 opensc
 plocate
 python3
