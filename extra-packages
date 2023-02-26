@@ -27,5 +27,6 @@ starship
 tor
 vim
 vimdiff
+wl-clipboard
 zellij
 zstd
