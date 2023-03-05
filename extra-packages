@@ -19,6 +19,7 @@ neovim
 nmap-ncat
 npm
 opensc
+openjdk8
 plocate
 python3
 ripgrep
