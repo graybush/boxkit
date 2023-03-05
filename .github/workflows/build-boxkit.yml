@@ -29,7 +29,7 @@ jobs:
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v3
-        
+
       # Build metadata
       - name: Image Metadata
         uses: docker/metadata-action@v4
@@ -51,7 +51,7 @@ jobs:
           tags: ${{ env.IMAGE_TAGS }}
           labels: ${{ steps.meta.outputs.labels }}
           oci: false
-          
+
       # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
       # https://github.com/macbre/push-to-ghcr/issues/12
       - name: Lowercase Registry
@@ -76,18 +76,6 @@ jobs:
           extra-args: |
             --disable-content-trust
 
-      # Sign container
-      - uses: sigstore/cosign-installer@main
-
-      # Only needed when running `cosign sign` using a key
-      - name: Write signing key to disk
-        run: |
-          echo "${{ env.COSIGN_PRIVATE_KEY }}" > cosign.key
-          # DEBUG: get character count of key
-          wc -c cosign.key
-        env:
-          COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
-
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
         with:
@@ -95,12 +83,18 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # Sign container
+      - uses: sigstore/cosign-installer@v3.0.1
+
       - name: Sign container image
         run: |
-          cosign sign --key cosign.key ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}@${TAGS}
+          echo "${{ env.COSIGN_PRIVATE_KEY }}" > cosign.key
+          wc -c cosign.key
+          cosign sign -y --key cosign.key ${{ steps.registry_case.outputs.lowercase }}/boxkit@${TAGS}
         env:
           TAGS: ${{ steps.push.outputs.digest }}
           COSIGN_EXPERIMENTAL: false
+          COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
 
       - name: Echo outputs
         run: |
